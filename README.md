@@ -2,6 +2,12 @@
 
 A **black-gold** theme plugin for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness): gold accents on a black-and-white base, in both light and dark mode.
 
+## Screenshots
+
+| Light | Dark |
+| --- | --- |
+| ![Light theme](screenshots/light.png) | ![Dark theme](screenshots/dark.png) |
+
 ## What it themes
 
 **Brand mark (sidebar logo)**
