@@ -1,0 +1,147 @@
+/* ==========================================================================
+   Black-gold theme CSS (global selectors — injected once at factory execution).
+   ========================================================================== */
+
+svg[viewBox="0 0 182 24"] { overflow: visible; }
+svg[viewBox="0 0 182 24"] g[clip-path="url(#dsh-wordmark-whale-clip)"] {
+  clip-path: none;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+svg[viewBox="0 0 182 24"] g[clip-path="url(#dsh-wordmark-whale-clip)"] path {
+  stroke: #CFB53B;
+  stroke-width: 1.2;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 0.7px #CFB53B);
+}
+svg[viewBox="0 0 23.16 17.04"] path {
+  stroke: #CFB53B;
+  stroke-width: 1.2;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 0.7px #CFB53B);
+}
+button:has(> svg[viewBox="0 0 182 24"]):hover g[clip-path="url(#dsh-wordmark-whale-clip)"] {
+  transform: scale(1.28) rotate(6deg);
+}
+svg[viewBox="0 0 182 24"] path[fill="var(--dsw-alias-label-primary-inverted)"] {
+  fill: #F4C430;
+}
+svg[viewBox="0 0 182 24"] g[clip-path="url(#dsh-wordmark-badge-clip)"] {
+  filter: drop-shadow(0 0 0.5px #CFB53B);
+}
+svg[viewBox="0 0 182 24"] > rect {
+  stroke: #CFB53B;
+  stroke-width: 0.6;
+}
+button:has(> svg[viewBox="0 0 182 24"]) {
+  position: relative;
+  overflow: visible;
+}
+button:has(> svg[viewBox="0 0 182 24"])::after {
+  content: '';
+  position: absolute;
+  top: 5.5px;
+  left: 129px;
+  width: 22px;
+  height: 14px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.78), transparent);
+  opacity: 0;
+  animation: dsh-harness-sheen 2.6s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes dsh-harness-sheen {
+  0%   { transform: skewX(-20deg) translateX(0);    opacity: 0; }
+  12%  { transform: skewX(-20deg) translateX(0);    opacity: 0.85; }
+  55%  { transform: skewX(-20deg) translateX(30px); opacity: 0.85; }
+  70%  { transform: skewX(-20deg) translateX(30px); opacity: 0; }
+  100% { transform: skewX(-20deg) translateX(30px); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  svg[viewBox="0 0 182 24"] g[clip-path="url(#dsh-wordmark-whale-clip)"] { transition: none; }
+  button:has(> svg[viewBox="0 0 182 24"]):hover g[clip-path="url(#dsh-wordmark-whale-clip)"] { transform: none; }
+  button:has(> svg[viewBox="0 0 182 24"])::after { animation: none; opacity: 0; }
+}
+
+/* Dark mode: keep the badge plate black so gold HARNESS stays legible. */
+body[data-ds-dark-theme] svg[viewBox="0 0 182 24"] > rect {
+  fill: #000;
+}
+
+/* Dark mode: dark whale body + gold outline (only the outline carries it). */
+body[data-ds-dark-theme] svg[viewBox="0 0 182 24"] g[clip-path="url(#dsh-wordmark-whale-clip)"] path {
+  fill: #000;
+}
+body[data-ds-dark-theme] svg[viewBox="0 0 23.16 17.04"] path {
+  fill: #000;
+}
+
+/* ---- Full-page black-gold (light + dark) ---- */
+
+/* Light: gold page accents + gray user bubble. */
+body {
+  --dsw-alias-state-business-primary: #C9A227;
+  --dsw-alias-state-business-tertiary: #F5E9C7;
+  --dsw-specific-sidebar-nav-item-active-accent: #F5E9C7;
+  --dsw-alias-button-info-fill: #C9A227;
+  --dsw-alias-button-info-hover: #D9B44A;
+  --dsw-specific-bubble: var(--dsw-static-neutral-bluish-50);
+}
+/* Dark: brighter gold. */
+body[data-ds-dark-theme] {
+  --dsw-alias-state-business-primary: #F4C430;
+  --dsw-alias-state-business-tertiary: #3a3113;
+  --dsw-specific-sidebar-nav-item-active-accent: #3a3113;
+  --dsw-alias-button-info-fill: #F4C430;
+  --dsw-alias-button-info-hover: #E3C04B;
+}
+
+/* Dark send/stop button: HARNESS style — black circle + gold icon + gold ring. */
+body[data-ds-dark-theme] button:has(> svg[viewBox="0 0 16 16"] > path[d^="M8.3125"]),
+body[data-ds-dark-theme] button:has(> svg[viewBox="0 0 16 16"] > rect[x="3"][width="10"]) {
+  background: #000;
+  color: #F4C430;
+  box-shadow: inset 0 0 0 1px #CFB53B;
+}
+body[data-ds-dark-theme] button:has(> svg[viewBox="0 0 16 16"] > :is(path[d^="M8.3125"], rect[x="3"][width="10"])):hover {
+  background: #1a1a1a;
+}
+
+/* Deep diving status: gold shimmer (swap only background-image). */
+div[role="status"][aria-live="polite"] {
+  background-image: linear-gradient(90deg, #C9A227 0%, #C9A227 40%, #F5E9C7 50%, #C9A227 60%, #C9A227 100%);
+}
+body[data-ds-dark-theme] div[role="status"][aria-live="polite"] {
+  background-image: linear-gradient(90deg, #F4C430 0%, #F4C430 40%, #FFE9A8 50%, #F4C430 60%, #F4C430 100%);
+}
+
+/* Sidebar running dot (StateDot ongoing): gold pixel-chase. */
+[data-state="ongoing"] {
+  --dsh-state-ongoing: #C9A227;
+}
+body[data-ds-dark-theme] [data-state="ongoing"] {
+  --dsh-state-ongoing: #F4C430;
+}
+
+/* Hero glow: light gold instead of the hardcoded blue ellipse. */
+svg[viewBox="0 0 1051 468"] ellipse {
+  fill: #E3C04B;
+}
+
+/* Fish mark: let the gold stroke/glow render past the viewBox edges. */
+svg[viewBox="0 0 23.16 17.04"] {
+  overflow: visible;
+}
+
+/* Trajectory + ContextMeter: recolor the remaining blue accents to gold. */
+body {
+  --dsw-alias-brand-primary-new-colorprimary-new-color: #C9A227;
+  --dsw-static-blue-500: #C9A227;
+  --dsw-static-blue-450: #C9A227;
+}
+body[data-ds-dark-theme] {
+  --dsw-alias-brand-primary-new-colorprimary-new-color: #F4C430;
+  --dsw-static-blue-500: #F4C430;
+  --dsw-static-blue-450: #F4C430;
+}

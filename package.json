@@ -1,0 +1,59 @@
+{
+  "name": "@frostgao/dsh-theme-blackgold",
+  "description": "A black-gold theme plugin for DeepSeek Harness: gold brand accents, a gold HARNESS badge with shine sweep, whale outline/glow/hover, and a full-page black-gold palette in light and dark.",
+  "version": "1.0.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": {
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "default": "./lib/client.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/client.js",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "typecheck": "tsc --noEmit"
+  },
+  "dsh": {
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-theme"
+      ],
+      "immediately": true
+    }
+  },
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "theme",
+    "black-gold",
+    "gold",
+    "plugin"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/frostgao/dsh-theme-blackgold"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "*",
+    "@deepseek-ai/dsh-client-ui-theme": "*"
+  },
+  "devDependencies": {
+    "tsdown": "^0.22.2",
+    "typescript": "^6.0.3"
+  }
+}
