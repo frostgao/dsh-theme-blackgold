@@ -11,7 +11,7 @@ A **black-gold** theme plugin for [DeepSeek Harness](https://github.com/deepseek
 ## What it themes
 
 **Brand mark (sidebar logo)**
-- Whale logo: gold outline + glow; smooth grow-and-tilt on hover; dark body + gold outline in dark mode.
+- Whale logo: thin champagne-gold outline (no glow); smooth grow-and-tilt on hover; dark body + gold outline in dark mode.
 - `HARNESS` badge: bright gold text on a black plate with a gold rim; periodic white shine sweep.
 - `deepseek-official` letterforms stay ink-black.
 
@@ -51,7 +51,8 @@ All colors live in `lib/client.js`. Search for the hex values and change them:
 | Role | Light | Dark |
 |---|---|---|
 | Page accent gold | `#C9A227` | `#F4C430` |
-| Brand / whale / border gold | `#CFB53B` | `#CFB53B` |
+| Whale outline gold | `#C9A227` | `#C9A227` |
+| Brand / border gold | `#CFB53B` | `#CFB53B` |
 | HARNESS text gold | `#F4C430` | `#F4C430` |
 | Hero glow / hover gold | `#E3C04B` / `#D9B44A` | `#E3C04B` |
 | Dark background tint | — | `#3a3113` |

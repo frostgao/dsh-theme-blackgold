@@ -10,16 +10,14 @@ svg[viewBox="0 0 182 24"] g[clip-path="url(#dsh-wordmark-whale-clip)"] {
   transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 svg[viewBox="0 0 182 24"] g[clip-path="url(#dsh-wordmark-whale-clip)"] path {
-  stroke: #CFB53B;
-  stroke-width: 1.2;
+  stroke: #C9A227;
+  stroke-width: 0.8;
   stroke-linejoin: round;
-  filter: drop-shadow(0 0 0.7px #CFB53B);
 }
 svg[viewBox="0 0 23.16 17.04"] path {
-  stroke: #CFB53B;
-  stroke-width: 1.2;
+  stroke: #C9A227;
+  stroke-width: 0.8;
   stroke-linejoin: round;
-  filter: drop-shadow(0 0 0.7px #CFB53B);
 }
 button:has(> svg[viewBox="0 0 182 24"]):hover g[clip-path="url(#dsh-wordmark-whale-clip)"] {
   transform: scale(1.28) rotate(6deg);

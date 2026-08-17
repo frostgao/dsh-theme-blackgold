@@ -1,6 +1,6 @@
 {
   "name": "@frostgao/dsh-theme-blackgold",
-  "description": "A black-gold theme plugin for DeepSeek Harness: gold brand accents, a gold HARNESS badge with shine sweep, whale outline/glow/hover, and a full-page black-gold palette in light and dark.",
+  "description": "A black-gold theme plugin for DeepSeek Harness: gold brand accents, a gold HARNESS badge with shine sweep, whale outline/hover, and a full-page black-gold palette in light and dark.",
   "version": "1.0.0",
   "publishConfig": {
     "access": "public"
