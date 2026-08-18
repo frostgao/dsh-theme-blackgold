@@ -79,6 +79,10 @@ All colors live in `lib/client.js`. Search for the hex values and change them:
 - `prefers-reduced-motion` is respected: the hover motion and shine sweep are disabled for users who
   ask for reduced motion.
 
+### Related
+
+- [`@frostgao/dsh-usage-cost`](https://github.com/frostgao/dsh-usage-cost) — usage & cost tracking that pairs with this theme.
+
 ### License
 
 MIT — see [LICENSE](./LICENSE).
@@ -146,6 +150,10 @@ npm install @frostgao/dsh-theme-blackgold
   `viewBox="0 0 182 24"` wordmark 及其内部 `clip-path` id。若 Harness 重绘该 SVG，这些选择器可能需要更新。
 - 这是「呈现层覆盖」而非语义重构：它依托 CSS 变量和少量组件级变量，底层 UI 变化时能优雅降级。
 - 尊重 `prefers-reduced-motion`：对请求减少动效的用户会禁用悬停动效和扫光。
+
+### 相关项目
+
+- [`@frostgao/dsh-usage-cost`](https://github.com/frostgao/dsh-usage-cost) —— 与本主题搭配的用量/成本统计插件。
 
 ### License
 
