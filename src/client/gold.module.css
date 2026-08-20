@@ -1,50 +1,65 @@
 /* ==========================================================================
-   Black-gold theme CSS (global selectors — injected once at factory execution).
+   Black-gold theme CSS — rc.8 slot-based brand adaptation.
+
+   The whale is now FishLogo (viewBox 0 0 23.16 17.04) and the name is
+   BrandWordmark includeMark=false (viewBox 26 0 156 24); both render through
+   the brand slots this theme fills (`.dsh-gold-mark` / `.dsh-gold-name`).
    ========================================================================== */
 
-svg[viewBox="0 0 182 24"] { overflow: visible; }
-svg[viewBox="0 0 182 24"] g[clip-path="url(#dsh-wordmark-whale-clip)"] {
-  clip-path: none;
-  transform-box: fill-box;
-  transform-origin: center;
-  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+/* ---- Whale mark (FishLogo) — gold outline, body rides currentColor ---- */
+.dsh-gold-mark {
+  display: inline-flex;
+  line-height: 0;
 }
-svg[viewBox="0 0 182 24"] g[clip-path="url(#dsh-wordmark-whale-clip)"] path {
+.dsh-gold-mark svg {
+  overflow: visible;
+}
+.dsh-gold-mark svg path {
   stroke: #C9A227;
   stroke-width: 0.8;
   stroke-linejoin: round;
 }
-svg[viewBox="0 0 23.16 17.04"] path {
-  stroke: #C9A227;
-  stroke-width: 0.8;
-  stroke-linejoin: round;
+body[data-ds-dark-theme] .dsh-gold-mark svg path {
+  fill: #000;
+  stroke: #F4C430;
 }
-button:has(> svg[viewBox="0 0 182 24"]):hover g[clip-path="url(#dsh-wordmark-whale-clip)"] {
-  transform: scale(1.28) rotate(6deg);
+
+/* ---- Name wordmark (BrandWordmark includeMark=false) ---- */
+.dsh-gold-name {
+  display: inline-flex;
+  line-height: 0;
+  position: relative;
 }
-svg[viewBox="0 0 182 24"] path[fill="var(--dsw-alias-label-primary-inverted)"] {
+/* The wordmark still carries the whale <g> but clips it via viewBox="26 0 156 24".
+   overflow must stay hidden or the clipped whale leaks out as a second mark. */
+.dsh-gold-name svg {
+  overflow: hidden;
+}
+/* HARNESS badge text rides the inverted label token — force gold. */
+.dsh-gold-name svg path[fill="var(--dsw-alias-label-primary-inverted)"] {
   fill: #F4C430;
 }
-svg[viewBox="0 0 182 24"] g[clip-path="url(#dsh-wordmark-badge-clip)"] {
+.dsh-gold-name svg g[clip-path="url(#dsh-wordmark-badge-clip)"] {
   filter: drop-shadow(0 0 0.5px #CFB53B);
 }
-svg[viewBox="0 0 182 24"] > rect {
+.dsh-gold-name svg > rect {
   stroke: #CFB53B;
   stroke-width: 0.6;
 }
-button:has(> svg[viewBox="0 0 182 24"]) {
-  position: relative;
-  overflow: visible;
+body[data-ds-dark-theme] .dsh-gold-name svg > rect {
+  fill: #000;
 }
-button:has(> svg[viewBox="0 0 182 24"])::after {
+
+/* ---- HARNESS sheen sweep over the badge (right end of the wordmark) ---- */
+.dsh-gold-name::after {
   content: '';
   position: absolute;
   top: 5.5px;
-  left: 129px;
+  right: 31px;
   width: 22px;
   height: 14px;
   border-radius: 2px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.78), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.78), transparent);
   opacity: 0;
   animation: dsh-harness-sheen 2.6s ease-in-out infinite;
   pointer-events: none;
@@ -57,27 +72,10 @@ button:has(> svg[viewBox="0 0 182 24"])::after {
   100% { transform: skewX(-20deg) translateX(30px); opacity: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
-  svg[viewBox="0 0 182 24"] g[clip-path="url(#dsh-wordmark-whale-clip)"] { transition: none; }
-  button:has(> svg[viewBox="0 0 182 24"]):hover g[clip-path="url(#dsh-wordmark-whale-clip)"] { transform: none; }
-  button:has(> svg[viewBox="0 0 182 24"])::after { animation: none; opacity: 0; }
+  .dsh-gold-name::after { animation: none; opacity: 0; }
 }
 
-/* Dark mode: keep the badge plate black so gold HARNESS stays legible. */
-body[data-ds-dark-theme] svg[viewBox="0 0 182 24"] > rect {
-  fill: #000;
-}
-
-/* Dark mode: dark whale body + gold outline (only the outline carries it). */
-body[data-ds-dark-theme] svg[viewBox="0 0 182 24"] g[clip-path="url(#dsh-wordmark-whale-clip)"] path {
-  fill: #000;
-}
-body[data-ds-dark-theme] svg[viewBox="0 0 23.16 17.04"] path {
-  fill: #000;
-}
-
-/* ---- Full-page black-gold (light + dark) ---- */
-
-/* Light: gold page accents + gray user bubble. */
+/* ---- Full-page black-gold (light + dark) — tokens still valid in rc.8 ---- */
 body {
   --dsw-alias-state-business-primary: #C9A227;
   --dsw-alias-state-business-tertiary: #F5E9C7;
@@ -86,7 +84,6 @@ body {
   --dsw-alias-button-info-hover: #D9B44A;
   --dsw-specific-bubble: var(--dsw-static-neutral-bluish-50);
 }
-/* Dark: brighter gold. */
 body[data-ds-dark-theme] {
   --dsw-alias-state-business-primary: #F4C430;
   --dsw-alias-state-business-tertiary: #3a3113;
@@ -95,7 +92,7 @@ body[data-ds-dark-theme] {
   --dsw-alias-button-info-hover: #E3C04B;
 }
 
-/* Dark send/stop button: HARNESS style — black circle + gold icon + gold ring. */
+/* Dark send/stop button: black circle + gold icon + gold ring. */
 body[data-ds-dark-theme] button:has(> svg[viewBox="0 0 16 16"] > path[d^="M8.3125"]),
 body[data-ds-dark-theme] button:has(> svg[viewBox="0 0 16 16"] > rect[x="3"][width="10"]) {
   background: #000;
@@ -106,7 +103,7 @@ body[data-ds-dark-theme] button:has(> svg[viewBox="0 0 16 16"] > :is(path[d^="M8
   background: #1a1a1a;
 }
 
-/* Deep diving status: gold shimmer (swap only background-image). */
+/* Deep diving status: gold shimmer. */
 div[role="status"][aria-live="polite"] {
   background-image: linear-gradient(90deg, #C9A227 0%, #C9A227 40%, #F5E9C7 50%, #C9A227 60%, #C9A227 100%);
 }
@@ -114,32 +111,67 @@ body[data-ds-dark-theme] div[role="status"][aria-live="polite"] {
   background-image: linear-gradient(90deg, #F4C430 0%, #F4C430 40%, #FFE9A8 50%, #F4C430 60%, #F4C430 100%);
 }
 
-/* Sidebar running dot (StateDot ongoing): gold pixel-chase. */
-[data-state="ongoing"] {
-  --dsh-state-ongoing: #C9A227;
-}
-body[data-ds-dark-theme] [data-state="ongoing"] {
-  --dsh-state-ongoing: #F4C430;
-}
-
 /* Hero glow: light gold instead of the hardcoded blue ellipse. */
 svg[viewBox="0 0 1051 468"] ellipse {
   fill: #E3C04B;
 }
 
-/* Fish mark: let the gold stroke/glow render past the viewBox edges. */
-svg[viewBox="0 0 23.16 17.04"] {
-  overflow: visible;
-}
-
-/* Trajectory + ContextMeter: recolor the remaining blue accents to gold. */
+/* ---- Blue → gold: recolor the whole blue ramp so nothing stays blue ---- */
+/* rc.8's blues live in two ramps: --dsw-static-deepseek-* (buttons/business
+   states) and --dsw-static-blue-* (generic blue). Map every shade to gold. */
 body {
-  --dsw-alias-brand-primary-new-colorprimary-new-color: #C9A227;
-  --dsw-static-blue-500: #C9A227;
+  --dsw-static-deepseek-50: #F7F0DC;
+  --dsw-static-deepseek-100: #F5E9C7;
+  --dsw-static-deepseek-200: #EAD9A4;
+  --dsw-static-deepseek-300: #DFC478;
+  --dsw-static-deepseek-400: #D9B44A;
+  --dsw-static-deepseek-450: #CFB53B;
+  --dsw-static-deepseek-500: #C9A227;
+  --dsw-static-deepseek-600: #B8961F;
+  --dsw-static-deepseek-800: #8A6C2A;
+  --dsw-static-deepseek-900: #6E5418;
+
+  --dsw-static-blue-50: #F7F0DC;
+  --dsw-static-blue-50p: #F7F0DC;
+  --dsw-static-blue-75: #F5E9C7;
+  --dsw-static-blue-100: #F5E9C7;
+  --dsw-static-blue-300: #DFC478;
+  --dsw-static-blue-400: #D9B44A;
   --dsw-static-blue-450: #C9A227;
+  --dsw-static-blue-500: #C9A227;
+  --dsw-static-blue-600: #B8961F;
+  --dsw-static-blue-800: #8A6C2A;
+  --dsw-static-blue-900: #6E5418;
+  --dsw-static-blue-950: #3a3113;
+
+  --dsw-alias-button-primary-fill: #C9A227;
+  --dsw-alias-button-primary-hover: #D9B44A;
 }
 body[data-ds-dark-theme] {
-  --dsw-alias-brand-primary-new-colorprimary-new-color: #F4C430;
-  --dsw-static-blue-500: #F4C430;
+  --dsw-static-deepseek-50: #3a3113;
+  --dsw-static-deepseek-100: #3a3113;
+  --dsw-static-deepseek-200: #4a3d1a;
+  --dsw-static-deepseek-300: #6E5418;
+  --dsw-static-deepseek-400: #E3C04B;
+  --dsw-static-deepseek-450: #F4C430;
+  --dsw-static-deepseek-500: #F4C430;
+  --dsw-static-deepseek-600: #E3C04B;
+  --dsw-static-deepseek-800: #8A6C2A;
+  --dsw-static-deepseek-900: #6E5418;
+
+  --dsw-static-blue-50: #3a3113;
+  --dsw-static-blue-50p: #3a3113;
+  --dsw-static-blue-75: #3a3113;
+  --dsw-static-blue-100: #4a3d1a;
+  --dsw-static-blue-300: #6E5418;
+  --dsw-static-blue-400: #E3C04B;
   --dsw-static-blue-450: #F4C430;
+  --dsw-static-blue-500: #F4C430;
+  --dsw-static-blue-600: #E3C04B;
+  --dsw-static-blue-800: #8A6C2A;
+  --dsw-static-blue-900: #6E5418;
+  --dsw-static-blue-950: #2a2413;
+
+  --dsw-alias-button-primary-fill: #F4C430;
+  --dsw-alias-button-primary-hover: #E3C04B;
 }
